@@ -31,8 +31,9 @@ public class IexRestController {
    * @return a list of all IexStockSymbols.
    */
   @GetMapping(value = "${mvc.iex.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<IexSymbol> getAllStockSymbols() {
-    return iexService.getAllSymbols();
+  public List<IexSymbol> getAllStockSymbols(
+      @RequestParam(value = "token") final String apiKey) {
+    return iexService.getAllSymbols(apiKey);
   }
 
   /**
@@ -44,8 +45,24 @@ public class IexRestController {
   @GetMapping(value = "${mvc.iex.getLastTradedPricePath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
   public List<IexLastTradedPrice> getLastTradedPrice(
+      @RequestParam(value = "token") final String apiKey,
       @RequestParam(value = "symbols") final List<String> symbols) {
-    return iexService.getLastTradedPriceForSymbols(symbols);
+    return iexService.getLastTradedPriceForSymbols(apiKey,symbols);
+  }
+
+  /**
+   * Get the last traded price for each of the symbols passed in.
+   *
+   * @param symbol list of symbols to get last traded price for.
+   * @return a List of IexLastTradedPrice objects for the given symbols.
+   */
+  @GetMapping(value = "${mvc.iex.getHistoricalPricePath}", produces = {
+      MediaType.APPLICATION_JSON_VALUE})
+  public Object getHistoricalPrice(
+      @RequestParam(value = "token") final String apiKey,
+      @RequestParam(value = "timeSeriesId") final String timeSeriesId,
+      @RequestParam(value = "symbol") final String symbol) {
+    return iexService.getHistoricalPriceForSymbol(apiKey,timeSeriesId,symbol);
   }
 
 }

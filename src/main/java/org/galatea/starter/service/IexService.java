@@ -27,8 +27,8 @@ public class IexService {
    *
    * @return a list of all Stock Symbols from IEX.
    */
-  public List<IexSymbol> getAllSymbols() {
-    return iexClient.getAllSymbols();
+  public List<IexSymbol> getAllSymbols(final String apiKey) {
+    return iexClient.getAllSymbols(apiKey);
   }
 
   /**
@@ -37,12 +37,24 @@ public class IexService {
    * @param symbols the list of symbols to get a last traded price for.
    * @return a list of last traded price objects for each Symbol that is passed in.
    */
-  public List<IexLastTradedPrice> getLastTradedPriceForSymbols(final List<String> symbols) {
+  public List<IexLastTradedPrice> getLastTradedPriceForSymbols(final String apiKey,
+      final List<String> symbols) {
     if (CollectionUtils.isEmpty(symbols)) {
       return Collections.emptyList();
     } else {
-      return iexClient.getLastTradedPriceForSymbols(symbols.toArray(new String[0]));
+      return iexClient.getLastTradedPriceForSymbols(apiKey,symbols.toArray(new String[0]));
     }
+  }
+
+  /**
+   * Get the last traded price for each Symbol that is passed in.
+   *
+   * @param symbol the list of symbols to get a last traded price for.
+   * @return a list of last traded price objects for each Symbol that is passed in.
+   */
+  public Object getHistoricalPriceForSymbol(final String apiKey,
+      final String timeSeriesId, final String symbol) {
+    return iexClient.getHistoricalPriceForSymbol(apiKey,timeSeriesId,symbol);
   }
 
 
