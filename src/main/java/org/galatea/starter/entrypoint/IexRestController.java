@@ -29,6 +29,7 @@ public class IexRestController {
   /**
    * Exposes an endpoint to get all of the symbols available on IEX.
    *
+   * @param apiKey api token.
    * @return a list of all IexStockSymbols.
    */
   @GetMapping(value = "${mvc.iex.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -40,6 +41,7 @@ public class IexRestController {
   /**
    * Get the last traded price for each of the symbols passed in.
    *
+   * @param apiKey api token.
    * @param symbols list of symbols to get last traded price for.
    * @return a List of IexLastTradedPrice objects for the given symbols.
    */
@@ -52,10 +54,12 @@ public class IexRestController {
   }
 
   /**
-   * Get the last traded price for each of the symbols passed in.
+   * Get the historical price for the symbol passed in.
    *
-   * @param symbol list of symbols to get last traded price for.
-   * @return a List of IexLastTradedPrice objects for the given symbols.
+   * @param apiKey api token.
+   * @param timeSeriesId type of data to get for symbol.
+   * @param symbol symbol to get data for.
+   * @return a List of IexHistoricalPrice objects for the given symbol.
    */
   @GetMapping(value = "${mvc.iex.getHistoricalPricePath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
