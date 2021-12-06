@@ -22,6 +22,7 @@ public class IexService {
   @NonNull
   private IexClient iexClient;
   String apiKey = "pk_6dbb04551433434f9b727aafceda2947";
+
   /**this generally isnt a good practice to have an apiKey here
    * but since this is a mock and the apikey is exposed anyway, I'm leaving this here
    * alternate solution would be to make a separate file in gitignore
