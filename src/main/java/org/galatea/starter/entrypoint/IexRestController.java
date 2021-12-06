@@ -29,45 +29,39 @@ public class IexRestController {
   /**
    * Exposes an endpoint to get all of the symbols available on IEX.
    *
-   * @param apiKey api token.
    * @return a list of all IexStockSymbols.
    */
   @GetMapping(value = "${mvc.iex.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<IexSymbol> getAllStockSymbols(
-      @RequestParam(value = "token") final String apiKey) {
-    return iexService.getAllSymbols(apiKey);
+  public List<IexSymbol> getAllStockSymbols() {
+    return iexService.getAllSymbols();
   }
 
   /**
    * Get the last traded price for each of the symbols passed in.
    *
-   * @param apiKey api token.
    * @param symbols list of symbols to get last traded price for.
    * @return a List of IexLastTradedPrice objects for the given symbols.
    */
   @GetMapping(value = "${mvc.iex.getLastTradedPricePath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
   public List<IexLastTradedPrice> getLastTradedPrice(
-      @RequestParam(value = "token") final String apiKey,
       @RequestParam(value = "symbols") final List<String> symbols) {
-    return iexService.getLastTradedPriceForSymbols(apiKey,symbols);
+    return iexService.getLastTradedPriceForSymbols(symbols);
   }
 
   /**
    * Get the historical price for the symbol passed in.
    *
-   * @param apiKey api token.
-   * @param timeSeriesId type of data to get for symbol.
+   * @param range string representation of date range of data.
    * @param symbol symbol to get data for.
    * @return a List of IexHistoricalPrice objects for the given symbol.
    */
   @GetMapping(value = "${mvc.iex.getHistoricalPricePath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
   public List<IexHistoricalPrice> getHistoricalPrice(
-      @RequestParam(value = "token") final String apiKey,
-      @RequestParam(value = "timeSeriesId") final String timeSeriesId,
+      @RequestParam(value = "range") final String range,
       @RequestParam(value = "symbol") final String symbol) {
-    return iexService.getHistoricalPriceForSymbol(apiKey,timeSeriesId,symbol);
+    return iexService.getHistoricalPriceForSymbol(range,symbol);
   }
 
 }

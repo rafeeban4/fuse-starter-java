@@ -42,13 +42,13 @@ public interface IexClient {
    * Get the time series data for stock symbol passed in. See https://iextrading.com/developer/docs/#time-series.
    *
    * @param apiKey token for api.
-   * @param timeSeriesId time series to get data for.
+   * @param range string representation of date range of data.
    * @param symbol stock symbol to get data for.
    * @return a list of the last traded price for each of the symbols passed in.
    */
-  @GetMapping("/time-series/{timeSeriesId}/{symbol}")
+  @GetMapping("/stock/{symbol}/chart/{range}")
   List<IexHistoricalPrice> getHistoricalPriceForSymbol(
       @RequestParam("token") String apiKey,
-      @PathVariable("timeSeriesId") String timeSeriesId,
+      @PathVariable("range") String range,
       @PathVariable ("symbol") String symbol);
 }
