@@ -2,7 +2,7 @@
   "id" : "16369e06-78d4-40a7-98d1-3dbe0ba82fc9",
   "name" : "historical_price",
   "request" : {
-    "url" : "/stock/FB/chart/5d?token=pk_6dbb04551433434f9b727aafceda2947",
+    "url" : "/stock/FB/chart/5d?token=TEST",
     "method" : "GET"
   },
   "response" : {

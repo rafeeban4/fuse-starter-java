@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.galatea.starter.domain.IexHistoricalPrice;
 import org.galatea.starter.domain.IexLastTradedPrice;
 import org.galatea.starter.domain.IexSymbol;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -21,7 +23,8 @@ public class IexService {
 
   @NonNull
   private IexClient iexClient;
-  String apiKey = "pk_6dbb04551433434f9b727aafceda2947";
+
+  @Value("${spring.api}") String apiKey;
 
   /**this generally isnt a good practice to have an apiKey here
    * but since this is a mock and the apikey is exposed anyway, I'm leaving this here
@@ -35,6 +38,7 @@ public class IexService {
    * @return a list of all IexStockSymbols.
    */
   public List<IexSymbol> getAllSymbols() {
+    System.out.println(apiKey);
     return iexClient.getAllSymbols(apiKey);
   }
 

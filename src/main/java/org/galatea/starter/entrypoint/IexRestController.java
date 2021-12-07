@@ -25,12 +25,12 @@ public class IexRestController {
 
   @NonNull
   private IexService iexService;
-
   /**
    * Exposes an endpoint to get all of the symbols available on IEX.
    *
    * @return a list of all IexStockSymbols.
    */
+
   @GetMapping(value = "${mvc.iex.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
   public List<IexSymbol> getAllStockSymbols() {
     return iexService.getAllSymbols();

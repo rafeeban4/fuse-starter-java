@@ -42,6 +42,7 @@ logging.level.org.springframework.boot.autoconfigure: INFO
 # Test properties go here
 spring:
    profiles: test
+   api: TEST
    datasource:
       username: sa
       password:
@@ -53,6 +54,7 @@ spring:
 # Dev properties go here
 spring:
    profiles: dev
+   api: pk_6dbb04551433434f9b727aafceda2947
    datasource:
       username: sa
       password:
