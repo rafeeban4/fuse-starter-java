@@ -9,7 +9,6 @@ import org.galatea.starter.domain.IexHistoricalPrice;
 import org.galatea.starter.domain.IexLastTradedPrice;
 import org.galatea.starter.domain.IexSymbol;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -26,19 +25,12 @@ public class IexService {
 
   @Value("${spring.api}") String apiKey;
 
-  /**this generally isnt a good practice to have an apiKey here
-   * but since this is a mock and the apikey is exposed anyway, I'm leaving this here
-   * alternate solution would be to make a separate file in gitignore
-   * that contains the apikey and then import it via FileReader
-  */
-
   /**
    * Exposes an endpoint to get all of the symbols available on IEX.
    *
    * @return a list of all IexStockSymbols.
    */
   public List<IexSymbol> getAllSymbols() {
-    System.out.println(apiKey);
     return iexClient.getAllSymbols(apiKey);
   }
 
