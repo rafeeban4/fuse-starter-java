@@ -1,12 +1,18 @@
 package org.galatea.starter;
 
+import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.galatea.starter.domain.IexHistoricalPrice;
+import org.galatea.starter.domain.rpsy.IiexHistoricalPriceRpsy;
 import org.galatea.starter.utils.exception.MissingOptionException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 
 /**
@@ -24,8 +30,9 @@ public class Application implements ApplicationRunner {
    */
   public static void main(final String[] args) {
     log.info("Starting spring application {}", System.getProperty("application.name"));
-    SpringApplication.run(Application.class, args);
-
+    // TODO: See if we need ConfigurableApplicationContext
+    ConfigurableApplicationContext configurableApplicationContext =
+        SpringApplication.run(Application.class, args);
   }
 
   /**

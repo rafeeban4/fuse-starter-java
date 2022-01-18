@@ -11,6 +11,10 @@ spring:
       # http://www.h2database.com/html/tutorial.html#using_server
       url: jdbc:h2:mem:testtest
       driver-class-name: org.h2.Driver
+   h2:
+      console:
+         enabled: true
+         path: /h2
    jpa:
       hibernate:
          ddl-auto: update
@@ -54,7 +58,7 @@ spring:
 # Dev properties go here
 spring:
    profiles: dev
-   api: #insert api token here
+   api: pk_6dbb04551433434f9b727aafceda2947 #insert api token here
    datasource:
       username: sa
       password:

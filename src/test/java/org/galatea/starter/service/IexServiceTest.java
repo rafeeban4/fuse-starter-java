@@ -11,9 +11,11 @@ import org.galatea.starter.ASpringTest;
 import org.galatea.starter.domain.IexHistoricalPrice;
 import org.galatea.starter.domain.IexLastTradedPrice;
 import org.galatea.starter.domain.IexSymbol;
+import org.galatea.starter.domain.rpsy.IiexHistoricalPriceRpsy;
 import org.galatea.starter.testutils.TestDataGenerator;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 public class IexServiceTest extends ASpringTest {
@@ -21,12 +23,15 @@ public class IexServiceTest extends ASpringTest {
   @MockBean
   private IexClient client;
 
+  @MockBean
+  private IiexHistoricalPriceRpsy cache;
+
   private IexService service;
   private Date dateRepresentation;
 
   @Before
   public void setup() {
-    service = new IexService(client);
+    service = new IexService(client,cache);
     //copied https://stackoverflow.com/questions/5677470/java-why-is-the-date-constructor-deprecated-and-what-do-i-use-instead
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.YEAR, 1988);
