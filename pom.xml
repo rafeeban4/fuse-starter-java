@@ -34,6 +34,8 @@
 		</sonar.coverage.exclusions>
 		<!-- Allow us to skip Unit Tests only, if need be, with -Dskip.surefire.tests, but retain the skip all tests functionality of -DskipTests -->
 		<skip.surefire.tests>${skipTests}</skip.surefire.tests>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 
 	<parent>

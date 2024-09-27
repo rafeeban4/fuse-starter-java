@@ -11,6 +11,10 @@ spring:
       # http://www.h2database.com/html/tutorial.html#using_server
       url: jdbc:h2:mem:testtest
       driver-class-name: org.h2.Driver
+   h2:
+      console:
+         enabled: true
+         path: /h2
    jpa:
       hibernate:
          ddl-auto: update
@@ -25,6 +29,7 @@ mvc:
    iex:
       getAllSymbolsPath: /iex/symbols
       getLastTradedPricePath: /iex/lastTradedPrice
+      getHistoricalPricePath: /iex/historicalPrices
    max-size-trace-payload: 50000
 jms:
    listener-concurrency: 1-5
@@ -41,6 +46,7 @@ logging.level.org.springframework.boot.autoconfigure: INFO
 # Test properties go here
 spring:
    profiles: test
+   api: TEST
    datasource:
       username: sa
       password:
@@ -52,11 +58,12 @@ spring:
 # Dev properties go here
 spring:
    profiles: dev
+   api: pk_6dbb04551433434f9b727aafceda2947 #insert api token here
    datasource:
       username: sa
       password:
    rest:
-      iexBasePath: https://api.iextrading.com/1.0
+      iexBasePath: https://cloud.iexapis.com/v1
 # set debug to get spring to log the classpath (and other things) on startup
 debug: true
 
